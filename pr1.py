@@ -1,5 +1,5 @@
 import sys
-import math,time 
+import math,time
 import matplotlib.pyplot as plt
 
 file1 = input("Enter file name(1): \n")
@@ -26,25 +26,29 @@ plt.ylim(-20,20)
 plt.scatter(array_x1,array_y1,c = 'r')
 plt.scatter(array_x2,array_y2,c = 'b')
 
+
 mean_x1,mean_y1,mean_x2,mean_y2 = 0,0,0,0
 
-for x in array_x1:
-	mean_x1 += x
-for y in array_y1:
-	mean_y1 += y
-for x in array_x2:
-	mean_x2 += x
-for y in array_y2:
-	mean_y2 += y
-mean_x1 = float(mean_x1/len(array_x1))
-mean_y1 = (float)(mean_y1/len(array_y1))
-mean_x2 = float(mean_x2/len(array_x2))
-mean_y2 = (float)(mean_y2/len(array_y2))
+
+for x in range((3*len(array_x1))//4):
+	print("check :: ",array_x1[x])
+	mean_x1 += array_x1[x];
+for y in range((3*len(array_y1))//4):
+	mean_y1 += array_y1[y]
+for x in range((3*len(array_x2))//4):
+	mean_x2 += array_x2[x]
+for y in range((3*len(array_y2))//4):
+	mean_y2 += array_y2[y]
+
+mean_x1 = float(mean_x1/((3*len(array_x1))//4))
+mean_y1 = (float)(mean_y1/((3*len(array_y1))//4))
+mean_x2 = float(mean_x2/((3*len(array_x2))//4))
+mean_y2 = (float)(mean_y2/((3*len(array_y2))//4))
 print("Mean x for 1: ",round(mean_x1,3))
 print("Mean y for 1:",round(mean_y1,3))
 print("Mean x for 2: ",round(mean_x2,3))
 print("Mean y for 2:",round(mean_y2,3),"\n")
-time.sleep(2)
+# time.sleep(2)
 
 # variance = 0
 # for x in array:
