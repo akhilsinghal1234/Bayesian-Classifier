@@ -10,13 +10,19 @@ def cal_mean(array):
 	mean = 0
 	for x in range((3*len(array))//4):					#calculating mean
 		mean += array[x];
-	return mean/((3*len(array_x1))//4)
+	return mean/((3*len(array))//4)
 
 def cal_var(array,mean):
 	var = 0
 	for x in range((3*len(array))//4):					#calculating variance
 		var += math.pow((array[x]-mean),2)
-	return (var/((3*len(array_x1))//4))
+	return (var/((3*len(array))//4))
+
+def rem(array1,array2):
+	l1 = (int)((len(array1)*3)/4)
+	for i in range(0,l1):
+		array1.pop(0)
+		array2.pop(0)
 
 file1 = input("Enter file name(1): \n")
 fp1 = open(file1,"r")
@@ -35,12 +41,6 @@ for line in fp2:
 	array_x2.append(float(m))
 	array_y2.append(float(n))
 
-plt.title('Data from')
-plt.xlabel('-----------------------X-----------------------')
-plt.ylabel('-----------------------Y-----------------------')
-
-plt.scatter(array_x1,array_y1,c = 'r')
-plt.scatter(array_x2,array_y2,c = 'b')
 
 mean_x1,mean_y1,mean_x2,mean_y2 = 0,0,0,0
 
@@ -68,7 +68,7 @@ x0_2 = (mean_y1 + mean_y2)/2
 c = x0_2 - slope*x0_1
 
 plot1,plot2 = [],[]
-for x in range (-15,15):
+for x in range (-10,20):
 	plot1.append(x)
 	plot2.append(slope*x + c)
 
@@ -89,6 +89,16 @@ plt.plot(plot1, plot2, c = "g")
 # var_2 = (var_x2 + var_y2)/2
 # var_avg = (var_1 + var_2)/2
 # print( "Average var: ",round(var_avg,3))
+
+plt.title('Data from')
+plt.xlabel('-----------------------X-----------------------')
+plt.ylabel('-----------------------Y-----------------------')
+
+rem(array_x1,array_y1)
+rem(array_x2,array_y2)
+
+plt.scatter(array_x1,array_y1,c = 'r')
+plt.scatter(array_x2,array_y2,c = 'b')
 
 print("Variance x1: ",round(var_x1,2))
 print("Variance y1: ",round(var_y1,2))
