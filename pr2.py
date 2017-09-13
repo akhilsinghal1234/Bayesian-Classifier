@@ -30,6 +30,15 @@ def cov(array1,array2,mean1,mean2):
 		co += ((array1[i]-mean1)*(array2[i] - mean2))
 	return co/((3*len(array1)//4 ) - 1)
 
+def mul(X,Y):
+	result = numpy.zeros(shape=(2,1))
+
+	for i in range(len(X)):
+   		for j in range(len(Y[0])):
+   			for k in range(len(Y)):
+   				result[i][j] += X[i][k] * Y[k][j]
+	return result
+
 file1 = input("Enter file name(1): \n")
 fp1 = open(file1,"r")
 file2 = input("Enter file name(2): \n")
@@ -61,7 +70,7 @@ var_x1 = cal_var(array_x1,mean_x1)
 var_y1 = cal_var(array_y1,mean_y1)
 var_x2 = cal_var(array_x2,mean_x2)
 var_y2 = cal_var(array_y2,mean_y2)
-
+	
 co_1 = cov(array_x1,array_y1,mean_x1,mean_y1)
 co_2 = cov(array_x2,array_y2,mean_x2,mean_y2)
 
@@ -73,7 +82,7 @@ cov_m[1,0] =cov_m[0,1]
 
 det = cov_m[0,0] * cov_m[1,1] - cov_m[1,0] * cov_m[0,1]		#determinant of cov_matrix
 
-temp = (cov_m[0,0]/det)							#inverse of cov_matrix
+temp = (cov_m[0,0]/det)						#inverse of cov_matrix
 cov_m[0,0] = (cov_m[1,1]/det)
 cov_m[1,1] = temp
 temp = cov_m[0,1]
@@ -83,9 +92,7 @@ mean = numpy.zeros(shape=(2,1))
 mean[0,0] = mean_x1 - mean_x2
 mean[1,0] = mean_y1 - mean_y2
 
-slope = numpy.zeros(shape=(2,1))
-slope[0,0] = cov_m[0,0]*mean[0,0] + cov_m[0,1]*mean[1,0]
-slope[1,0] = cov_m[1,0]*mean[0,0] + cov_m[1,1]*mean[1,0]
+slope = mul(cov_m,mean)						#multiply cov_matrix and mean
 m = slope[1,0]/slope[0,0]
 slope = -1*(1/m)
 
@@ -101,11 +108,6 @@ for x in range (-10,20):
 
 plt.plot(plot1, plot2, c = "g")
 
-# var_1 = (var_x1 + var_y1)/2
-# var_2 = (var_x2 + var_y2)/2
-# var_avg = (var_1 + var_2)/2
-# print( "Average var: ",round(var_avg,3))
-
 plt.title('Data from')
 plt.xlabel('-----------------------X-----------------------')
 plt.ylabel('-----------------------Y-----------------------')
@@ -115,11 +117,6 @@ rem(array_x2,array_y2)
 
 plt.scatter(array_x1,array_y1,c = 'r')
 plt.scatter(array_x2,array_y2,c = 'b')
-
-print("Variance x1: ",round(var_x1,2))
-print("Variance y1: ",round(var_y1,2))
-print("Variance x2: ",round(var_x2,2))
-print("Variance y2: ",round(var_y2,2))
 
 plt.show()
 fp1.close()
