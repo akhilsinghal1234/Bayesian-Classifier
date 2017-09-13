@@ -1,6 +1,6 @@
 import sys,math,time,numpy
-
 import matplotlib.pyplot as plt
+plt.rcParams['axes.facecolor'] = 'wheat'
 
 def cal_mean(array):
 	mean = 0
@@ -152,7 +152,7 @@ plt.ylabel('-----------------------Y-----------------------')
 rem(array_x1,array_y1)
 rem(array_x2,array_y2)
 
-plt.scatter(array_x1,array_y1,c = 'c')
+plt.scatter(array_x1,array_y1,c = 'g')
 plt.scatter(array_x2,array_y2,c = 'm')
 
 plt.show()
