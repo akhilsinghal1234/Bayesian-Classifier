@@ -8,13 +8,19 @@
 
 ## Instructions
 1. Clone the above repo by 
-	` $ git clone https://github.com/akhilsinghal1234/Bayesian-Classifier '
+	```
+	 $ git clone https://github.com/akhilsinghal1234/Bayesian-Classifier 
+	```
 2. Activate/Load Python 3.x Environment
 3. Spawn terminal in cloned folder
 4. Run following comands to make script executable
- 	' $ sudo chmod +x all.sh '
+ 	```
+ 	 $ sudo chmod +x all.sh 
+ 	```
 5. Run Script
- 	' $ sh all.sh ' 
+ 	```
+ 	 $ sh all.sh
+ 	``` 
 6. Check Output folder !
 
 ## Contributers
