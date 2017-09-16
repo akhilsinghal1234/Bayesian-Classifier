@@ -1,20 +1,20 @@
 # Bayesian-Classifier
 - Python code 
- - 1.py 2.py 3.py and 4.py 
+  - 1.py 2.py 3.py and 4.py 
 - Training Data
- - Class1, Class2 Class3 
+  - Class1, Class2 Class3 
 - Code
- - Find Mean, Variance and Co-variance.
+  - Find Mean, Variance and Co-variance.
 
 ## Instructions
-1. clone the above repo by 
-	`$ git clone https://github.com/akhilsinghal1234/Bayesian-Classifier'
+1. Clone the above repo by 
+	` $ git clone https://github.com/akhilsinghal1234/Bayesian-Classifier '
 2. Activate/Load Python 3.x Environment
 3. Spawn terminal in cloned folder
-4. Run following comands to make script executable'
- 	'$ sudo chmod +x all.sh
+4. Run following comands to make script executable
+ 	' $ sudo chmod +x all.sh '
 5. Run Script
- 	'$ sh all.sh' 
+ 	' $ sh all.sh ' 
 6. Check Output folder !
 
 ## Contributers
