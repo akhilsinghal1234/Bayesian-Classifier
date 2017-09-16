@@ -143,22 +143,55 @@ for k in x_data:
 
 r = []
 r = find_r(x_data,y_data,number_of_files)
-
-i = 0
 x_r,y_r = [],[]
-x_r = numpy.linspace(r[1],r[0],100)
-y_r = numpy.linspace(r[3],r[2],100)
-Z = numpy.zeros(shape=((r[0]-r[1]),(r[2]-r[3])))
+x_r = numpy.linspace(r[1],r[0],1000)
+y_r = numpy.linspace(r[3],r[2],1000)
+max_r = 0
+for i in range(len(r)):
+	if(abs(r[i]) > max_r):
+		max_r = abs(r[i])
+
+Z = numpy.zeros(shape=(2*max_r,2*max_r))
+min_r = -1*max_r
+
 colors = "gcwbrymk"
+color = "wcym"
 conf_matrix = numpy.zeros(shape=(number_of_files,number_of_files))
 mean = numpy.zeros(shape=(2,1))
 
+x = numpy.zeros(shape=(2,1))
+
+for i in range(min_r,max_r):
+	for j in range(min_r,max_r):
+		val = []
+		x[0,0] = i+abs(r[1])-1
+		x[1,0] = j+abs(r[3])-1
+		for k in range(number_of_files):
+			mean[0,0] = mean_x[k]
+			mean[1,0] = mean_y[k]
+			cov = cov_mat(var_x[k],var_y[k])
+			cov_i = inverse(cov,determinant(cov))
+			val.append(gx(Wi(cov_i),wi(cov_i,mean),x,wi0(cov_i,mean,probability[k],determinant(cov))))
+		Z[i+max_r][j+max_r] = max(val)
 
 data_x,data_y = [],[]
 for i in range(number_of_files):
 	x,y = [],[]
 	data_x.append(x)
 	data_y.append(y)
+
+X,Y = [],[]
+for i in range(min_r,max_r):
+	X.append(i)
+	Y.append(i)
+	
+fig1.suptitle('Line contour plot', fontsize=20)
+cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
+ax1.clabel(cp, inline=True, fontsize=10)
+
+for i in range(number_of_files):
+	ax1.scatter(x_data[i],y_data[i],label=files[i],c=color[i])
+ax1.legend()
 
 for i in x_r:
 	for j in y_r:
@@ -177,38 +210,14 @@ for i in x_r:
 			data_x[class_].append(i)
 			data_y[class_].append(j)
 
+
 for i in range(number_of_files):
 	ax2.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])
-plt.legend()
+ax2.legend()
 
 for j in range(number_of_files):
 	rem(x_data[j],y_data[j])
 	ax2.scatter(x_data[j],y_data[j],marker='o',c=colors[7-j])
-
-x = numpy.zeros(shape=(2,1))
-
-for i in range(r[1],r[0]):
-	for j in range(r[3],r[2]):
-		val = []
-		x[0,0] = i+abs(r[1])-1
-		x[1,0] = j+abs(r[3])-1
-		for k in range(number_of_files):
-			mean[0,0] = mean_x[k]
-			mean[1,0] = mean_y[k]
-			cov = cov_mat(var_x[k],var_y[k])
-			cov_i = inverse(cov,determinant(cov))
-			val.append(gx(Wi(cov_i),wi(cov_i,mean),x,wi0(cov_i,mean,probability[k],determinant(cov))))
-		Z[i+abs(r[1])-1][j+abs(r[3])-1] = max(val)
-fig1.suptitle('Line contour plot', fontsize=20)
-
-X,Y = [],[]
-for i in range(r[3],r[2]):
-	X.append(i)
-for j in range(r[1],r[0]):
-	Y.append(j)
-	
-cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
-ax1.clabel(cp, inline=True, fontsize=10)
 
 for i in range(number_of_files):
 	for j in range(len(x_data[i])):
@@ -266,5 +275,5 @@ for file in files:
 	name_i = file
 	name_i = name_i[:-4]
 	name += name_i
-fig2.savefig( "Output/3/" + str(3)  + name + ".png")
-fig1.savefig( "Output/3/" + str(3) + "contour" + name + ".png")
+fig2.savefig("Output/3/" +str(3)  + name + ".png")
+fig1.savefig("Output/3/"+ str(3) + "contour" + name + ".png")

@@ -153,17 +153,19 @@ for k in x_data:
 
 r = []
 r = find_r(x_data,y_data,number_of_files)
-
-max_r = max(r)
-min_r = min(r)
-ran = max_r - min_r
-print(ran)
-i = 0
 x_r,y_r = [],[]
-x_r = numpy.linspace(r[1],r[0],100)
-y_r = numpy.linspace(r[3],r[2],100)
-Z = numpy.zeros(shape=(ran,ran))
+x_r = numpy.linspace(r[1],r[0],1000)
+y_r = numpy.linspace(r[3],r[2],1000) 	
+max_r = 0
+for i in range(len(r)):
+	if(abs(r[i]) > max_r):
+		max_r = abs(r[i])
+
+Z = numpy.zeros(shape=(2*max_r,2*max_r))
+min_r = -1*max_r
+
 colors = "gcwbrymk"
+color = "wcym"
 mean = numpy.zeros(shape=(2,1))
 conf_matrix = numpy.zeros(shape=(number_of_files,number_of_files))
 
@@ -172,12 +174,6 @@ for k in range(number_of_files):
 	mean[0,0] = mean_x[k]
 	mean[1,0] = mean_y[k]
 	parameters.append(param(wi(cov_i,mean),wi0(cov_i,mean,probability[k])))
-
-X,Y = [],[]
-for i in range(min_r,max_r):
-	X.append(i)
-for j in range(min_r,max_r):
-	Y.append(j)
 
 for i in range(min_r,max_r):
 	for j in range(min_r,max_r):
@@ -188,13 +184,25 @@ for i in range(min_r,max_r):
 			mean[0,0] = mean_x[k]
 			mean[1,0] = mean_y[k]
 			val.append(gx(parameters[k].wi,x,parameters[k].wi0))
-		Z[i+abs(r[1])-1][j+abs(r[3])-1] = max(val)
+		Z[i+max_r][j+max_r] = max(val)
 
 data_x,data_y = [],[]
 for i in range(number_of_files):
 	x,y = [],[]
 	data_x.append(x)
 	data_y.append(y)
+
+X,Y = [],[]
+for i in range(min_r,max_r):
+	X.append(i)
+	Y.append(i)
+fig1.suptitle('Line contour plot', fontsize=20)
+cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
+ax1.clabel(cp, inline=True, fontsize=10)
+
+for i in range(number_of_files):
+	ax1.scatter(x_data[i],y_data[i],label=files[i],c=color[i])
+ax1.legend()
 
 for i in x_r:
 	for j in y_r:
@@ -209,14 +217,6 @@ for i in x_r:
 			data_x[class_].append(i)
 			data_y[class_].append(j)
 
-
-fig1.suptitle('Line contour plot', fontsize=20)
-
-cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
-ax1.clabel(cp, inline=True, fontsize=10)
-
-# for j in range(number_of_files):
-# 	ax1.scatter(x_data[j],y_data[j],marker='o', c=colors[7-j])
 
 for i in range(number_of_files):
 	ax2.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])

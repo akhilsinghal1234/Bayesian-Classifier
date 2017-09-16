@@ -5,8 +5,6 @@ fig1, ax1 = plt.subplots()
 fig2, ax2 = plt.subplots()
 
 class param(object):
-	# wi = numpy.zeros(shape=(2,1))
-	# wi0 = 0
 	def __init__(self,wi,wi0)	:
 		self.wi = wi
 		self.wi0 = wi0
@@ -123,18 +121,22 @@ for k in range(number_of_files):
 	mean[1,0] = mean_y[k]
 	parameters.append(param(wi(var_av,mean),wi0(var_av,mean,probability[k])))
 
-i = 0
-x_r,y_r = [],[]
-x_r = numpy.linspace(r[1],r[0],100)
-y_r = numpy.linspace(r[3],r[2],100)
-X, Y = numpy.meshgrid(x_r, y_r)
+x_r = numpy.linspace(r[1],r[0],1000)
+y_r = numpy.linspace(r[3],r[2],1000)
 
-Z = numpy.zeros(shape=((r[0]-r[1]),(r[2]-r[3])))
+max_r = 0
+for i in range(len(r)):
+	if(abs(r[i]) > max_r):
+		max_r = abs(r[i])
+
+Z = numpy.zeros(shape=(2*max_r,2*max_r))
+min_r = -1*max_r
 
 colors = "bygcwrmk"
+color = "wcym"
 
-for i in range(r[1],r[0]):
-	for j in range(r[3],r[2]):
+for i in range(min_r,max_r):
+	for j in range(min_r,max_r):
 		val,x = [],[]
 		x.append(i)
 		x.append(j)
@@ -142,20 +144,26 @@ for i in range(r[1],r[0]):
 			mean[0,0] = mean_x[k]
 			mean[1,0] = mean_y[k]
 			val.append(gx(parameters[k].wi,x,parameters[k].wi0))
-		Z[i+abs(r[1])-1][j+abs(r[3])-1] = max(val)
+		Z[i+max_r][j+max_r] = max(val)
 
 X,Y = [],[]
-for i in range(r[3],r[2]):
+for i in range(min_r,max_r):
 	X.append(i)
-for j in range(r[1],r[0]):
-	Y.append(j)
+	Y.append(i)
+fig1.suptitle('Line contour plot', fontsize=20)
+
+cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
+ax1.clabel(cp, inline=True, fontsize=10)
+
+for i in range(number_of_files):
+	ax1.scatter(x_data[i],y_data[i],label=files[i],c=color[i])
+ax1.legend()
 
 data_x,data_y = [],[]
 for i in range(number_of_files):
 	x,y = [],[]
 	data_x.append(x)
 	data_y.append(y)
-
 for i in x_r:
 	for j in y_r:
 		val,x = [],[]
@@ -168,11 +176,6 @@ for i in x_r:
 			class_ = val.index(max(val))
 			data_x[class_].append(i)
 			data_y[class_].append(j)
-
-fig1.suptitle('Line contour plot', fontsize=20)
-
-cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
-ax1.clabel(cp, inline=True, fontsize=10)
 
 for i in range(number_of_files):
 	ax2.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])
@@ -239,7 +242,6 @@ for file in files:
 	name_i = file
 	name_i = name_i[:-4]
 	name += name_i
-
 fig2.savefig("Output/1/" +str(1)  + name + ".png")
 fig1.savefig("Output/1/" + str(1) + "contour" + name + ".png")
 
