@@ -1,10 +1,10 @@
 # Bayesian-Classifier
--Python code 
- -1.py 2.py 3.py and 4.py 
--Training Data:
- -Class1, Class2 Class3 
--code:
- -Find Mean, Variance and Co-variance.
+- Python code 
+ - 1.py 2.py 3.py and 4.py 
+- Training Data
+ - Class1, Class2 Class3 
+- Code
+ - Find Mean, Variance and Co-variance.
 
 ## Instructions
 1. clone the above repo by 
@@ -20,6 +20,6 @@
 ## Contributers
 
 [Abhijeet sharma](http://students.iitmandi.ac.in/~abhijeet_sharma)
--Github: http://github.com/abhijeet2096
--Email: sharma.abhijeet2096@gmail.com
+1. Github: http://github.com/abhijeet2096
+2. Email: sharma.abhijeet2096@gmail.com
 
