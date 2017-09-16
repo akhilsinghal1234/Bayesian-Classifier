@@ -175,7 +175,8 @@ for i in x_r:
 			data_y[class_].append(j)
 
 for i in range(number_of_files):
-	plt.scatter(data_x[i],data_y[i],c=colors[i])
+	plt.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])
+plt.legend()
 
 for j in range(number_of_files):
 	rem(x_data[j],y_data[j])
@@ -233,5 +234,11 @@ print("Accuracy of classification:",round(accuracy,3))
 print("Mean recall:",round(mean_re,3))
 print("Mean precision:",round(mean_pre,3))
 print("Mean F-measure:",round((f_measure/number_of_files),3))
-plt.savefig("re3.png")
+name = ""
+for file in files:
+	name_i = file
+	name_i = name_i[:-4]
+	name += name_i
+# print(name)
+plt.savefig(str(3) + name + ".png")
 # plt.show()
