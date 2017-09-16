@@ -1,5 +1,7 @@
 import sys,numpy,math,time
 import matplotlib.pyplot as plt
+fig1, ax1 = plt.subplots()
+fig2, ax2 = plt.subplots()
 
 def mul(X,Y):
 	result = numpy.zeros(shape=(2,1))
@@ -146,10 +148,11 @@ i = 0
 x_r,y_r = [],[]
 x_r = numpy.linspace(r[1],r[0],100)
 y_r = numpy.linspace(r[3],r[2],100)
-
+Z = numpy.zeros(shape=((r[0]-r[1]),(r[2]-r[3])))
 colors = "gcwbrymk"
 conf_matrix = numpy.zeros(shape=(number_of_files,number_of_files))
 mean = numpy.zeros(shape=(2,1))
+
 
 data_x,data_y = [],[]
 for i in range(number_of_files):
@@ -175,14 +178,38 @@ for i in x_r:
 			data_y[class_].append(j)
 
 for i in range(number_of_files):
-	plt.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])
+	ax2.scatter(data_x[i],data_y[i],label=files[i],c=colors[i])
 plt.legend()
 
 for j in range(number_of_files):
 	rem(x_data[j],y_data[j])
-	plt.scatter(x_data[j],y_data[j],marker='o',c=colors[7-j])
+	ax2.scatter(x_data[j],y_data[j],marker='o',c=colors[7-j])
 
 x = numpy.zeros(shape=(2,1))
+
+for i in range(r[1],r[0]):
+	for j in range(r[3],r[2]):
+		val = []
+		x[0,0] = i+abs(r[1])-1
+		x[1,0] = j+abs(r[3])-1
+		for k in range(number_of_files):
+			mean[0,0] = mean_x[k]
+			mean[1,0] = mean_y[k]
+			cov = cov_mat(var_x[k],var_y[k])
+			cov_i = inverse(cov,determinant(cov))
+			val.append(gx(Wi(cov_i),wi(cov_i,mean),x,wi0(cov_i,mean,probability[k],determinant(cov))))
+		Z[i+abs(r[1])-1][j+abs(r[3])-1] = max(val)
+fig1.suptitle('Line contour plot', fontsize=20)
+
+X,Y = [],[]
+for i in range(r[3],r[2]):
+	X.append(i)
+for j in range(r[1],r[0]):
+	Y.append(j)
+	
+cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
+ax1.clabel(cp, inline=True, fontsize=10)
+
 for i in range(number_of_files):
 	for j in range(len(x_data[i])):
 		x[0,0] = x_data[i][j]
@@ -239,6 +266,5 @@ for file in files:
 	name_i = file
 	name_i = name_i[:-4]
 	name += name_i
-# print(name)
-plt.savefig("Output/3/"+ str(3) + name + ".png")
-# plt.show()
+fig2.savefig( "Output/3/" + str(3)  + name + ".png")
+fig1.savefig( "Output/3/" + str(3) + "contour" + name + ".png")
