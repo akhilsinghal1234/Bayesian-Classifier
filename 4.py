@@ -173,8 +173,8 @@ x = numpy.zeros(shape=(2,1))
 for i in range(min_r,max_r):
 	for j in range(min_r,max_r):
 		val = []
-		x[0,0] = i+abs(r[1])-1
-		x[1,0] = j+abs(r[3])-1
+		x[0,0] = i
+		x[1,0] = j
 		for k in range(number_of_files):
 			mean[0,0] = mean_x[k]
 			mean[1,0] = mean_y[k]
@@ -192,9 +192,9 @@ X,Y = [],[]
 for i in range(min_r,max_r):
 	X.append(i)
 	Y.append(i)
-fig1.suptitle('Line contour plot', fontsize=20)
-cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
-ax1.clabel(cp, inline=True, fontsize=10)
+fig1.suptitle('Filled contour plot', fontsize=20)
+cp = ax1.contourf(X, Y, Z)
+fig1.colorbar(cp)
 
 for i in range(number_of_files):
 	ax1.scatter(x_data[i],y_data[i],label=files[i],c=color[i])
