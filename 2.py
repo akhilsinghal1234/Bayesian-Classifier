@@ -250,5 +250,5 @@ for file in files:
 	name_i = name_i[:-4]
 	name += name_i
 # print(name)
-plt.savefig("Output/"+ str(2) + name + ".png")
+plt.savefig("Output/2/"+ str(2) + name + ".png")
 # plt.show()

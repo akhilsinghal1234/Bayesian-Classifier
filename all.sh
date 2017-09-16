@@ -1,7 +1,22 @@
 #! /bin/sh
+clear
+echo "                                                ##########################################
+                                                # Version :: 1.01                        #
+                                                # Scripts all the possible input and     #
+                                                # redirects to output folder 1 2 3 4	 #
+                                                # Group :: 1                             #
+                                                ##########################################"
+
 dirname="Output"
+echo "\nMaking Output Directory.\n"
 rm -f -r ${dirname}
 mkdir -p -- ${dirname}
+cd ${dirname}
+for number in 1 2 3 4;do
+mkdir -p -- "$number"
+done 
+cd ..
+echo "Generating All Posible Input cases .\n"
 dirname="input"
 rm -f -r ${dirname}
 mkdir -p -- ${dirname}
@@ -23,11 +38,13 @@ elif [ $number = 3 ]; then
 
 postfix1=".py"
 for number in 1 2 3 4;do
-python "$number$postfix1" < $prefix'1_1'$postfix
-python "$number$postfix1" < $prefix'1_2'$postfix
-python "$number$postfix1" < $prefix'1_3'$postfix
-python "$number$postfix1" < $prefix'2_12'$postfix
-python "$number$postfix1" < $prefix'2_13'$postfix
-python "$number$postfix1" < $prefix'2_23'$postfix
-python "$number$postfix1" < $prefix'3_123'$postfix
+echo "Running Program For Case $number.\n"
+python "$number$postfix1" < $prefix'1_1'$postfix > temp.txt
+python "$number$postfix1" < $prefix'1_2'$postfix > temp.txt
+python "$number$postfix1" < $prefix'1_3'$postfix > temp.txt
+python "$number$postfix1" < $prefix'2_12'$postfix > temp.txt
+python "$number$postfix1" < $prefix'2_13'$postfix > temp.txt
+python "$number$postfix1" < $prefix'2_23'$postfix > temp.txt
+python "$number$postfix1" < $prefix'3_123'$postfix > temp.txt
 done
+echo "Program Completed !\n\nPlease check the Output Directory!\n"
