@@ -28,4 +28,14 @@
 [Abhijeet sharma](http://students.iitmandi.ac.in/~abhijeet_sharma)
 1. Github: http://github.com/abhijeet2096
 2. Email: sharma.abhijeet2096@gmail.com
+3. Mobile: +91-8629015433
 
+[Akhil Singhal](http://students.iitmandi.ac.in/~akhil_singhal)
+1. Github: http://github.com/akhilsinghal1234
+2. Email: akhilsinghal1234@gmail.com
+3. Mobile: +91-8629015410
+
+[Pranav Gupta](http://pranavgupta1234.github.io)
+1. Github: http://github.com/pranavgupta1234
+2. Email: pranavgupta1234@gmail.com
+3. Mobile: +91-8629015392
