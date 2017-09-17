@@ -4,7 +4,7 @@ echo "                                                ##########################
                                                 # Version :: 1.01                        #
                                                 # Scripts all the possible input and     #
                                                 # redirects to output folder 1 2 3 4	 #
-                                                # Group :: 1                             #
+                                                # Group :: 3                             #
                                                 ##########################################"
 
 dirname="Output"
