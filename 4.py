@@ -98,6 +98,7 @@ number_of_files = n
 for x in range(n):
 	name = input("Enter file name:\n")
 	files.append (name)
+Output = input("Enter Output Directory:\n")
 mean_x,mean_y,var_x,var_y,x_data,y_data,cov_ = [],[],[],[],[],[],[]
 
 for file in files:
@@ -282,5 +283,5 @@ for file in files:
 	name_i = file
 	name_i = name_i[:-4]
 	name += name_i
-fig2.savefig("Output/4/" +  str(4)  + name + ".png")
-fig1.savefig("Output/4/" +  str(4) + "contour" + name + ".png")
+fig2.savefig(Output + "/4/" +  str(4)  + name + ".png")
+fig1.savefig(Output + "/4/" +  str(4) + "contour" + name + ".png")

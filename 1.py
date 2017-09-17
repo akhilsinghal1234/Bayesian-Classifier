@@ -56,6 +56,7 @@ number_of_files = n
 for x in range(n):
 	name = input("Enter file name:\n")
 	files.append (name)
+Output = input("Enter Output Directory:\n")
 mean_x = []
 mean_y = []
 var_x,var_y = [],[]
@@ -121,8 +122,8 @@ for k in range(number_of_files):
 	mean[1,0] = mean_y[k]
 	parameters.append(param(wi(var_av,mean),wi0(var_av,mean,probability[k])))
 
-x_r = numpy.linspace(r[1],r[0],100)
-y_r = numpy.linspace(r[3],r[2],100)
+x_r = numpy.linspace(r[1],r[0],1000)
+y_r = numpy.linspace(r[3],r[2],1000)
 
 max_r = 0
 for i in range(len(r)):
@@ -150,10 +151,10 @@ X,Y = [],[]
 for i in range(min_r,max_r):
 	X.append(i)
 	Y.append(i)
-fig1.suptitle('Filled contour plot', fontsize=20)
+fig1.suptitle('Line contour plot', fontsize=20)
 
-cp = ax1.contourf(X, Y, Z)
-fig1.colorbar(cp)
+cp = ax1.contour(X,Y,Z, colors='black', linestyles='dashed')
+ax1.clabel(cp, inline=True, fontsize=10)
 
 for i in range(number_of_files):
 	ax1.scatter(x_data[i],y_data[i],label=files[i],c=color[i])
@@ -242,6 +243,6 @@ for file in files:
 	name_i = file
 	name_i = name_i[:-4]
 	name += name_i
-fig2.savefig("Output/1/" +  str(1)  + name + ".png")
-fig1.savefig("Output/1/" +  str(1) + "contour" + name + ".png")
+fig2.savefig(Output + "/1/" +str(1)  + name + ".png")
+fig1.savefig(Output + "/1/" + str(1) + "contour" + name + ".png")
 
