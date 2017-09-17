@@ -1,0 +1,31 @@
+Enter a number: 
+Enter file name:
+Enter file name:
+Enter file name:
+Enter Output Directory:
+Confusion Matrix for all classes:
+ [[ 103.    9.   13.]
+ [  18.  107.    0.]
+ [  18.    0.  107.]]
+Recall for class: Class1_nl.txt
+0.741
+Recall for class: Class2_nl.txt
+0.922
+Recall for class: Class3_nl.txt
+0.892
+Precision for class: Class1_nl.txt
+0.824
+Precision for class: Class2_nl.txt
+0.856
+Precision for class: Class3_nl.txt
+0.856
+F-measure for: Class1_nl.txt 
+ 0.78
+F-measure for: Class2_nl.txt 
+ 0.888
+F-measure for: Class3_nl.txt 
+ 0.873
+Accuracy of classification: 0.845
+Mean recall: 0.852
+Mean precision: 0.845
+Mean F-measure: 0.847

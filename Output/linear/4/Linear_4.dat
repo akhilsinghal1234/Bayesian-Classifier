@@ -1,0 +1,31 @@
+Enter a number: 
+Enter file name:
+Enter file name:
+Enter file name:
+Enter Output Directory:
+Confusion Matrix for all classes:
+ [[ 125.    0.    0.]
+ [   0.  125.    0.]
+ [   0.    0.  125.]]
+Recall for class: Class1_l.txt
+1.0
+Recall for class: Class2_l.txt
+1.0
+Recall for class: Class3_l.txt
+1.0
+Precision for class: Class1_l.txt
+1.0
+Precision for class: Class2_l.txt
+1.0
+Precision for class: Class3_l.txt
+1.0
+F-measure for: Class1_l.txt 
+ 1.0
+F-measure for: Class2_l.txt 
+ 1.0
+F-measure for: Class3_l.txt 
+ 1.0
+Accuracy of classification: 1.0
+Mean recall: 1.0
+Mean precision: 1.0
+Mean F-measure: 1.0
