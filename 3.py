@@ -145,8 +145,8 @@ for k in x_data:
 r = []
 r = find_r(x_data,y_data,number_of_files)
 x_r,y_r = [],[]
-x_r = numpy.linspace(r[1],r[0],1000)
-y_r = numpy.linspace(r[3],r[2],1000)
+x_r = numpy.linspace(r[1],r[0],150)
+y_r = numpy.linspace(r[3],r[2],150)
 max_r = 0
 for i in range(len(r)):
 	if(abs(r[i]) > max_r):

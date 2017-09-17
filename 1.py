@@ -122,8 +122,8 @@ for k in range(number_of_files):
 	mean[1,0] = mean_y[k]
 	parameters.append(param(wi(var_av,mean),wi0(var_av,mean,probability[k])))
 
-x_r = numpy.linspace(r[1],r[0],1000)
-y_r = numpy.linspace(r[3],r[2],1000con)
+x_r = numpy.linspace(r[1],r[0],150)
+y_r = numpy.linspace(r[3],r[2],150)
 
 max_r = 0
 for i in range(len(r)):
